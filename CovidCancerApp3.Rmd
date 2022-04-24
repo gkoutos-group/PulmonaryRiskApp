@@ -126,13 +126,13 @@ fillCol(height = 390, width= 600, flex = c(NA, 1),
           inputPanel(
             selectInput(names(vars)[[1]], "Age ", choices = vars[[1]]), 
             selectInput(names(vars)[[2]], "Sex ", choices = vars[[2]]), 
-            selectInput(names(vars)[[3]], "ASA grade: ", choices = vars[[3]]), 
-            selectInput(names(vars)[[6]], "BUPA_operation_grade", choices = vars[[6]]),
-            selectInput(names(vars)[[5]], "Preexisting respiratory disease", choices = vars[[5]]),
+            selectInput(names(vars)[[3]], "ASA grade ", choices = vars[[3]]), 
+            selectInput(names(vars)[[6]], "Operation grade", choices = vars[[6]]),
+            selectInput(names(vars)[[5]], "Pre-existing respiratory disease", choices = vars[[5]]),
             selectInput(names(vars)[[4]], "RCRI", choices = vars[[4]]),
-            selectInput(names(vars)[[8]], "Anaesthetic type", choices = vars[[8]]),
+            selectInput(names(vars)[[8]], "Anaesthesia type", choices = vars[[8]]),
             selectInput(names(vars)[[13]], "Indication", choices = vars[[13]]),
-            selectInput(names(vars)[[15]], "Country_income_SARSCoV2_risk", choices = vars[[15]]),
+            selectInput(names(vars)[[15]], "Country income*SARSCoV2 risk", choices = vars[[15]]),
             selectInput(names(vars)[[12]], "Compartment", choices = vars[[12]])
           ), style = "background-color: light blue;", align = "center"
 )
@@ -174,7 +174,7 @@ names(pp) <- c("Variables", "Score")
 #},bg="transparent")
 
 tags$iframe(style="height:550px; width:100%; scrolling=yes",
-src="Table.pdf")  #put better
+src="TableFinalApp.pdf")  #put better
 
 ```
 
@@ -186,18 +186,18 @@ h3("About us")
 
 __Model Development Team__ (alphabetical by surname):
 
+* Aneel Bhangu 
 * Laura Bravo
 * Victor Roth Cardoso
+* Saisakul Chernbumroong
 * James Glasbey
 * Georgios Gkoutos
-* Elizabeth Li
+* Kenneth A McLean
 * Dmitri Nepogodiev
-* Omar Omar
 * Joana Simoes
 * Luke Slater
-* Aneel Bhangu (guarantor)
 
-A full list of COVIDSurg collaborators will be presented in the final published paper.
+A full list of GlobalSurg Collaborative, CovidSurg Collaborative and STARSurg Collaborative authors  will be presented in the final published paper.
 
 ### Row 
 -----------------------------------------------------------------------
@@ -224,7 +224,7 @@ Fin  <- reactive({
 
 Result <- reactive({
   
-  if ( Fin()$G1 > 3 & Fin()$G1 <19) {
+  if ( Fin()$G1 > 4 ) { #& Fin()$G1 <19
   
   
   Result <- CountPerVal %>%
@@ -236,7 +236,7 @@ Result <- reactive({
   }else {
     
     
-    out <- " "
+    out <- "<0.5"
   }
   
 out
